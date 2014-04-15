@@ -3,6 +3,7 @@
 #' 
 #' @importFrom rjson fromJSON
 #' @param request environment. The httpuv request environment.
+#' @return a list with the processed POST parameters.
 extract_params_from_request <- function(request) {
   require(rjson)
   post_parameters <- request$rook.input$read_lines()
@@ -14,6 +15,7 @@ extract_params_from_request <- function(request) {
 #' body (in JSON format for now).
 #' 
 #' @param request environment. The httpuv request environment.
+#' @return a list with the processed GET parameters.
 extract_query_from_request <- function(request) {
   require(rjson)
   require(utils)

@@ -8,19 +8,20 @@
 #'
 #' @param routes list. A named list of routes.
 #' @param path character. The path to wich the request was sent.
+#' @return the correct route drawn from the routes list
 determine_route <- function(routes, path) {
   stopifnot(is.list(routes))
   has_unnamed_route <-
-    (names(routes) == NULL && length(routes) == 0) || !'' %in% names(routes)
-  root <-
-    if (has_unnamed_route) {
-      if (names(routes) == NULL) routes[[1]]
-      else routes[[which('' %in% names(routes))[1]]]
-    } else function(params, query) list(status = 400)
-
+    (identical(names(routes), NULL) && length(routes) != 0) || '' %in% names(routes)
   routenames <- names(routes)[names(routes) != '']
   for (route in routenames) {
-    route <- paste0('^', route)    
+    if (grepl(paste0('^', route), path)) return(routes[[route]])
   }
+
+  # Use root route by default
+  if (has_unnamed_route) {
+    if (identical(names(routes), NULL)) routes[[1]]
+    else routes[[which('' == names(routes))[1]]]
+  } else function(params, query) list(status = 404)
 }
 
