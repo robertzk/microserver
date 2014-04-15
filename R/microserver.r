@@ -11,9 +11,10 @@
 #' }
 http_server <- function(routes) {
   function(req) {
+    browser()
     extract_params_from_request(req)
     extract_query_from_request(req)
-    parse_route(routes, req$PATH_INFO)
+    determine_route(routes, req$PATH_INFO)
     body <- get('PATH_INFO', req)
     
     list(status = 200,
@@ -28,8 +29,12 @@ http_server <- function(routes) {
 #' requests.
 #'
 #' @param port integer. The default is 8103.
+#' @importFrom httpuv startServer
+#' @importFrom httpuv stopServer
 #' @export
 run_server <- function(hooks, port = 8103) {
+  require(httpuv)
+
   # A list of default HTTUPV callbacks
   httpuv_callbacks <- list(
     onHeaders = function(req) { NULL },
