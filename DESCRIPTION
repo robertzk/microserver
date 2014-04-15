@@ -1,0 +1,20 @@
+Package: microserver
+Type: Package
+Title: Microserver
+Version: 0.0.1
+Description: Microserver is a package that builds on the httupv library
+    and aims to provide a minimal set of tools to get a JSON-based
+    REST API off the ground.
+Authors@R: c(person("Robert", "Krzyzanowski",
+    email = "technoguyrob@gmail.com", role = c("aut", "cre")))
+Depends:
+    R (>= 3.0.1)
+Imports:
+    httpuv,
+    rjson
+Suggests:
+    testthat,
+    microbenchmark,
+    knitr
+License: MIT
+LazyData: true

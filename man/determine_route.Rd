@@ -1,0 +1,20 @@
+\name{determine_route}
+\alias{determine_route}
+\title{Determine the correct route to use based on a list of routes and
+the current path.}
+\usage{
+determine_route(routes, path)
+}
+\arguments{
+  \item{routes}{list. A named list of routes.}
+
+  \item{path}{character. The path to wich the request was
+  sent.}
+}
+\description{
+For example, \code{list('/ping' = function(params, query)
+'Hello world!', function(params, query) 'Invalid route.'))}
+refers to a /ping route and a default route 'Invalid
+route.'
+}
+
