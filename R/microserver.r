@@ -28,13 +28,13 @@ http_server <- function(routes) {
 #' @importFrom httpuv startServer
 #' @importFrom httpuv stopServer
 #' @export
-run_server <- function(hooks, port = 8103) {
+run_server <- function(routes, port = 8103) {
   require(httpuv)
 
   # A list of default HTTUPV callbacks
   httpuv_callbacks <- list(
     onHeaders = function(req) { NULL },
-    call = http_server(hooks),
+    call = http_server(routes),
     onWSOpen = function(ws) {
       # print('opening websocket')
     }
