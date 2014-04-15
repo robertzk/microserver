@@ -15,8 +15,8 @@ http_server <- function(routes) {
     query <- extract_query_from_request(req)
     route <- determine_route(routes, req$PATH_INFO)
     body <- route(params, query)
-    if (is.response(body)) unclass(body)
-    else response(body)
+    if (is.microserver_response(body)) unclass(body)
+    else unclass(microserver_response(body))
   }
 }
 

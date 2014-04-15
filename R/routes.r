@@ -22,6 +22,6 @@ determine_route <- function(routes, path) {
   if (has_unnamed_route) {
     if (identical(names(routes), NULL)) routes[[1]]
     else routes[[which('' == names(routes))[1]]]
-  } else function(params, query) list(status = 404)
+  } else function(params, query) microserver_response(status = 404)
 }
 

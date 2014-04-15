@@ -7,7 +7,7 @@
 extract_params_from_request <- function(request) {
   require(rjson)
   post_parameters <- request$rook.input$read_lines()
-  if (nchar(post_parameters) == 0) NULL
+  if (length(post_parameters) == 0 || nchar(post_parameters) == 0) NULL
   else tryCatch(fromJSON(post_parameters), error = function(err) err)
 }
 
@@ -19,7 +19,7 @@ extract_params_from_request <- function(request) {
 extract_query_from_request <- function(request) {
   require(rjson)
   require(utils)
-  get_parameters <- strsplit(request$QUERY_STRING %||% '', '&')[[1]]
+  get_parameters <- strsplit(gsub('^\\?', '', request$QUERY_STRING %||% ''), '&')[[1]]
   Reduce(append, lapply(get_parameters, function(param) {
     param <- strsplit(param, "=")[[1]]
     param[[2]] <- utils::URLdecode(paste(param[-1], collapse = '='))
