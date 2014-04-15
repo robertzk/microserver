@@ -11,16 +11,12 @@
 #' }
 http_server <- function(routes) {
   function(req) {
-    browser()
-    extract_params_from_request(req)
-    extract_query_from_request(req)
-    determine_route(routes, req$PATH_INFO)
-    body <- get('PATH_INFO', req)
-    
-    list(status = 200,
-      body = body,
-      headers = list('Content-Type' = 'text/plain')
-    )
+    params <- extract_params_from_request(req)
+    query <- extract_query_from_request(req)
+    route <- determine_route(routes, req$PATH_INFO)
+    body <- route(params, query)
+    if (is.response(body)) unclass(body)
+    else response(body)
   }
 }
 
