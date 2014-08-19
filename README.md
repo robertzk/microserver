@@ -1,4 +1,4 @@
-microserver
+Microserver
 ===========
 
 Minimal R server mimicking Ruby's Sinatra gem.
