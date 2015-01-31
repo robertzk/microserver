@@ -2,7 +2,7 @@
 #' 
 #' @param routes list. A named list of routes, with a handler
 #'    function for each route. The first unnamed route will be used
-#'    as the root. In none is provided, just a 404 status will be returned.
+#'    as the root. If none is provided, just a 404 status will be returned.
 #' @seealso \link{\code{parse_routes}}
 #' @examples
 #' \dontrun{
@@ -25,12 +25,9 @@ http_server <- function(routes) {
 #' requests.
 #'
 #' @param port integer. The default is 8103.
-#' @importFrom httpuv startServer
-#' @importFrom httpuv stopServer
+#' @importFrom httpuv startServer stopServer service
 #' @export
 run_server <- function(routes, port = 8103) {
-  require(httpuv)
-
   # A list of default HTTUPV callbacks
   httpuv_callbacks <- list(
     onHeaders = function(req) { NULL },
@@ -40,11 +37,11 @@ run_server <- function(routes, port = 8103) {
     }
   )
 
-  server_id <- startServer("0.0.0.0", port, httpuv_callbacks)
-  on.exit({ stopServer(server_id) })
+  server_id <- httpuv::startServer("0.0.0.0", port, httpuv_callbacks)
+  on.exit({ httpuv::stopServer(server_id) }, add = TRUE)
 
   repeat {
-    service(1)
+    httpuv::service(1)
     Sys.sleep(0.001)
   }
 }

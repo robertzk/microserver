@@ -9,7 +9,7 @@ http_server(routes)
 \arguments{
 \item{routes}{list. A named list of routes, with a handler
 function for each route. The first unnamed route will be used
-as the root. In none is provided, just a 404 status will be returned.}
+as the root. If none is provided, just a 404 status will be returned.}
 }
 \description{
 Default http server configuration for libuv hook.

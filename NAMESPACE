@@ -3,6 +3,7 @@
 export(run_server)
 import(httpuv)
 import(jsonlite)
+importFrom(httpuv,service)
 importFrom(httpuv,startServer)
 importFrom(httpuv,stopServer)
 importFrom(jsonlite,fromJSON)
