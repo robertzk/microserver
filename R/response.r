@@ -13,12 +13,11 @@
 #' }
 microserver_response <- function(response = NULL, status = 200,
                      headers = list('Content-Type' = 'text/json')) {
-  require(rjson)
   response <- tryCatch(
-    list(body = if (!is.null(response)) toJSON(response) else '',
+    list(body = if (!is.null(response)) jsonlite::toJSON(response, auto_unbox = TRUE) else '',
          status = status, headers = headers),
-    error = function(err) list(body = toJSON(list(status = 'error',
-      message = 'Error parsing JSON response')), status = 500,
+    error = function(err) list(body = jsonlite::toJSON(list(status = 'error',
+      message = 'Error parsing JSON response'), auto_unbox = TRUE), status = 500,
       headers = list('Content-Type' = 'text/json')))
   class(response) <- 'microserver_response'
   response
@@ -29,5 +28,5 @@ microserver_response <- function(response = NULL, status = 200,
 #' @param obj any R object.
 #' @return \code{TRUE} or \code{FALSE} if \code{obj} inherits \code{response}.
 #' @seealso \code{\link{response}}
-is.microserver_response <- function(obj) inherits(obj, 'microserver_response')
+is.microserver_response <- function(obj) { inherits(obj, 'microserver_response') }
 
