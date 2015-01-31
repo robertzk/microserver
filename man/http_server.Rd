@@ -20,7 +20,4 @@ Default http server configuration for libuv hook.
                    function(params, query) 'Invalid route.'))
 }
 }
-\seealso{
-\link{\code{parse_routes}}
-}
 

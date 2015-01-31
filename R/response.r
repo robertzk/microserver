@@ -27,6 +27,6 @@ microserver_response <- function(response = NULL, status = 200,
 #'
 #' @param obj any R object.
 #' @return \code{TRUE} or \code{FALSE} if \code{obj} inherits \code{response}.
-#' @seealso \code{\link{response}}
+#' @seealso \code{\link{microserver_response}}
 is.microserver_response <- function(obj) { inherits(obj, 'microserver_response') }
 

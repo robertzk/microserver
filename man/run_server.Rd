@@ -8,6 +8,8 @@ requests.}
 run_server(routes, port = 8103)
 }
 \arguments{
+\item{routes}{list. A named list of routes.}
+
 \item{port}{integer. The default is 8103.}
 }
 \description{

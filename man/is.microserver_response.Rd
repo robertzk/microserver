@@ -16,6 +16,6 @@ is.microserver_response(obj)
 Determine whether something is of S3 class microserver_response.
 }
 \seealso{
-\code{\link{response}}
+\code{\link{microserver_response}}
 }
 

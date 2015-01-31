@@ -3,7 +3,6 @@
 #' @param routes list. A named list of routes, with a handler
 #'    function for each route. The first unnamed route will be used
 #'    as the root. If none is provided, just a 404 status will be returned.
-#' @seealso \link{\code{parse_routes}}
 #' @examples
 #' \dontrun{
 #'   http_server(list('/ping' = function(params, query) 'Hello world!',
@@ -24,6 +23,7 @@ http_server <- function(routes) {
 #' Minimal function for opening a socket and accepting/responding to
 #' requests.
 #'
+#' @param routes list. A named list of routes.
 #' @param port integer. The default is 8103.
 #' @importFrom httpuv startServer stopServer service
 #' @export
