@@ -11,11 +11,11 @@
 http_server <- function(routes) {
   function(req) {
     params <- extract_params_from_request(req)
-    query <- extract_query_from_request(req)
-    route <- determine_route(routes, req$PATH_INFO)
-    body <- route(params, query)
-    if (is.microserver_response(body)) unclass(body)
-    else unclass(microserver_response(body))
+    query  <- extract_query_from_request(req)
+    route  <- determine_route(routes, req$PATH_INFO)
+    result <- route(params, query)
+    if (is.microserver_response(result)) unclass(result)
+    else unclass(microserver_response(result))
   }
 }
 
