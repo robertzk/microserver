@@ -3,7 +3,7 @@ context('response')
 test_that('it returns an ERROR message on invalid JSON', {
   resp <- microserver_response(new.env())
   expect_identical(resp$status, 500)
-  expect_identical(from_json(resp$body)$status, 'error')
+  expect_identical(from_json(resp$body)[['status']], 'error')
 })
 
 test_that('it returns a 200 response when given a character response', {
@@ -22,6 +22,6 @@ test_that('it returns an exotic response correctly', {
 test_that('it returns a 200 response with a correctly encoded JSON response for a list', {
   resp <- microserver_response(list(a = 1, b = 2))
   expect_identical(resp$status, 200)
-  expect_identical(fromJSON(resp$body), list(a = 1, b = 2))
+  expect_equal(from_json(resp$body), c(a = 1, b = 2))
 })
 

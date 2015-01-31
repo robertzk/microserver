@@ -14,10 +14,10 @@
 microserver_response <- function(response = NULL, status = 200,
                      headers = list('Content-Type' = 'text/json')) {
   response <- tryCatch(
-    list(body = if (!is.null(response)) jsonlite::toJSON(response, auto_unbox = TRUE) else '',
+    list(body = if (!is.null(response)) to_json(response) else '',
          status = status, headers = headers),
-    error = function(err) list(body = jsonlite::toJSON(list(status = 'error',
-      message = 'Error parsing JSON response'), auto_unbox = TRUE), status = 500,
+    error = function(err) list(body = to_json(list(status = 'error',
+      message = 'Error parsing JSON response')), status = 500,
       headers = list('Content-Type' = 'text/json')))
   class(response) <- 'microserver_response'
   response

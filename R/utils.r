@@ -4,6 +4,10 @@ from_json <- function(obj) {
   simplify_homogeneous_lists(jsonlite::fromJSON(obj, simplifyVector = FALSE))
 }
 
+to_json <- function(obj) {
+  as.character(jsonlite::toJSON(obj, auto_unbox = TRUE))
+}
+
 #' Fix jsonlite's JSON simplification.
 #'
 #' @param object any R object derived from \code{\link[jsonlite]{fromJSON}}.
