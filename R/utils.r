@@ -1,5 +1,9 @@
 `%||%` <- function(x, y) if (is.null(x)) y else x
 
+from_json <- function(obj) {
+  simplify_homogeneous_lists(jsonlite::fromJSON(obj))
+}
+
 #' Fix jsonlite's JSON simplification.
 #'
 #' @param object any R object derived from \code{\link[jsonlite]{fromJSON}}.

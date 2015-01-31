@@ -7,7 +7,7 @@
 extract_params_from_request <- function(request) {
   post_parameters <- request$rook.input$read_lines()
   if (length(post_parameters) == 0 || nchar(post_parameters) == 0) NULL
-  else tryCatch(jsonlite::fromJSON(post_parameters, simplifyVector = FALSE),
+  else tryCatch(from_json(post_parameters, simplifyVector = FALSE),
                 error = function(err) err)
 }
 
