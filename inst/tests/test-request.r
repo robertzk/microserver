@@ -13,8 +13,8 @@ test_that('it returns an ERROR for an invalid JSON', {
 test_that('it returns the correct parameter list for a simple correct example', {
   request <- list(rook.input = list(read_lines = function()
     '{"example": "JSON", "number": 5, "numeric": [1,2], "list": [1, "a"] }'))
-  expect_identical(extract_params_from_request(request),
-                   list(example = "JSON", number = 5, numeric = c(1,2), list = list(1, 'a')))
+  expect_equal(extract_params_from_request(request),
+               list(example = "JSON", number = 5, numeric = c(1,2), list = list(1, 'a')))
 })
 
 context('extract_query_from_request')

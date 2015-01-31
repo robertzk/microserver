@@ -1,7 +1,7 @@
 `%||%` <- function(x, y) if (is.null(x)) y else x
 
 from_json <- function(obj) {
-  simplify_homogeneous_lists(jsonlite::fromJSON(obj))
+  simplify_homogeneous_lists(jsonlite::fromJSON(obj, simplifyVector = FALSE))
 }
 
 #' Fix jsonlite's JSON simplification.
