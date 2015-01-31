@@ -5,6 +5,7 @@
 #' @param object any R object derived from \code{\link[jsonlite]{fromJSON}}.
 #' @return the same object, with any list components where each element is
 #'   an atomic vector of length 1 or NULL coerced to a single atomic vector.
+#' @note See https://github.com/jeroenooms/jsonlite/issues/66 for more details.
 #' @examples
 #' \dontrun{
 #'   simplify_homogeneous_lists(jsonlite::fromJSON(

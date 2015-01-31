@@ -16,6 +16,9 @@ the same object, with any list components where each element is
 \description{
 Fix jsonlite's JSON simplification.
 }
+\note{
+See https://github.com/jeroenooms/jsonlite/issues/66 for more details.
+}
 \examples{
 \dontrun{
   simplify_homogeneous_lists(jsonlite::fromJSON(
