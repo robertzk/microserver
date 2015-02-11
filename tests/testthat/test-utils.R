@@ -6,3 +6,7 @@ test_that('simplify_homogeneous_lists can simplify homogeneous lists', {
   expect_identical(simplify_homogeneous_lists(test_obj), goal_obj)
 })
 
+test_that('to_json correctly handles deeply nested, named, atomic vectors', {
+  expect_identical(to_json(list(alice = 5, bob = c(charlie = 27))),
+                   "{\"alice\":5,\"bob\":{\"charlie\":27}}")
+})
