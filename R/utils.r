@@ -4,8 +4,26 @@ from_json <- function(obj) {
   simplify_homogeneous_lists(jsonlite::fromJSON(obj, simplifyVector = FALSE))
 }
 
+has_names <- function(obj) {
+  !is.null(names(obj)) && !is.null(Find(function(s) !is.na(s) && (s != ""), names(obj)))
+}
+
+enlist_if_named <- function(obj) {
+  if(is.atomic(obj) && has_names(obj)) as.list(obj) else obj
+}
+
+recursively_enlist_if_named <- function(obj) {
+  if (is.atomic(obj) || length(obj) == 0) enlist_if_named(obj)
+  else {
+    if (is.data.frame(obj)) {
+      as.data.frame(lapply(obj, recursively_enlist_if_named))
+    } else lapply(obj, recursively_enlist_if_named)
+  }
+}
+
 to_json <- function(obj) {
-  as.character(jsonlite::toJSON(obj, auto_unbox = TRUE))
+  obj2 <- recursively_enlist_if_named(obj)
+  as.character(jsonlite::toJSON(obj2, auto_unbox = TRUE))
 }
 
 #' Fix jsonlite's JSON simplification.
@@ -47,4 +65,3 @@ common_type <- function(x) {
   else if (length(unique(types)) == 1) { types[1] }
   else { NA }
 }
-
