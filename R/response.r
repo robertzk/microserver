@@ -15,7 +15,11 @@
 microserver_response <- function(response = NULL, status = 200,
                      headers = list('content-type' = 'text/json')) {
   response <- tryCatch(
-    list(body = ifelse(!is.null(response), ifelse(headers$`content-type` == 'text/json', to_json(response), response), ''),
+    list(body = ifelse(!is.null(response),
+                       ifelse(headers$`content-type` == 'text/json',
+                              to_json(response),
+                              response),
+                       ''),
          status = status, headers = headers),
     error = function(err) list(body = to_json(list(status = 'error',
       message = 'Error parsing JSON response')), status = 500,
