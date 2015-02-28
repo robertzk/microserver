@@ -3,14 +3,14 @@
 \name{determine_route}
 \alias{determine_route}
 \title{Determine the correct route to use based on a list of routes and
-the current path.}
+the current request_path.}
 \usage{
-determine_route(routes, path)
+determine_route(routes, request_path)
 }
 \arguments{
 \item{routes}{list. A named list of routes.}
 
-\item{path}{character. The path to wich the request was sent.}
+\item{request_path}{character. The path to which the request was sent.}
 }
 \value{
 the correct route drawn from the routes list

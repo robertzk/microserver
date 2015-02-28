@@ -1,5 +1,5 @@
 #' Default http server configuration for libuv hook.
-#' 
+#'
 #' @param routes list. A named list of routes, with a handler
 #'    function for each route. The first unnamed route will be used
 #'    as the root. If none is provided, just a 404 status will be returned.
@@ -46,4 +46,3 @@ run_server <- function(routes, port = 8103) {
     Sys.sleep(0.001)
   }
 }
-

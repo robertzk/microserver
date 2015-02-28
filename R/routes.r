@@ -1,5 +1,5 @@
 #' Determine the correct route to use based on a list of routes and
-#' the current path.
+#' the current request_path.
 #'
 #' For example,
 #' \code{list('/ping' = function(params, query) 'Hello world!',
@@ -7,15 +7,29 @@
 #' refers to a /ping route and a default route  'Invalid route.'
 #'
 #' @param routes list. A named list of routes.
-#' @param path character. The path to wich the request was sent.
+#' @param request_path character. The path to which the request was sent.
 #' @return the correct route drawn from the routes list
-determine_route <- function(routes, path) {
+determine_route <- function(routes, request_path) {
   stopifnot(is.list(routes))
+  serve_static <- routes$serve_static %||% FALSE
   has_unnamed_route <-
     (identical(names(routes), NULL) && length(routes) != 0) || '' %in% names(routes)
   routenames <- names(routes)[names(routes) != '']
   for (route in routenames) {
-    if (grepl(paste0('^', route), path)) return(routes[[route]])
+    if (grepl(paste0('^', route), request_path)) {
+      return(routes[[route]])
+    } else if (serve_static) {
+      if (file.exists(paste0("public", request_path))) {
+        payload <- paste0(readLines(paste0("public", request_path)), collapse=" ")
+        return(function(p,q) {
+          print(payload)
+          microserver_response(
+            payload,
+            headers = list("content-type" = "text/html")
+          )
+        })
+      }
+    }
   }
 
   # Use root route by default
@@ -24,4 +38,3 @@ determine_route <- function(routes, path) {
     else routes[[which('' == names(routes))[1]]]
   } else function(params, query) microserver_response(status = 404)
 }
-
