@@ -7,6 +7,7 @@
 #' @param headers list. A list of HTTP headers (default is
 #'    \code{list('Content-Type' = 'text/json')}.
 #' @importFrom jsonlite toJSON
+#' @export
 #' @examples
 #' \dontrun{
 #' response('Did not work!', 404) # 404 error
