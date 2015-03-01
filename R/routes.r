@@ -31,6 +31,6 @@ determine_route <- function(routes, request_path) {
 }
 
 fetch_asset <- function(asset_path) {
-  payload <- paste0(readLines(paste0("public", request_path)), collapse=" ")
+  payload <- paste0(readLines(paste0("public", asset_path)), collapse=" ")
   microserver_response(payload, headers = list("content-type" = "text/html"))
 }
