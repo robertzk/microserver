@@ -31,9 +31,3 @@ test_that("it fetches the file for an asset if it exists", {
     pending()
   })
 })
-
-package_stub("stats", "lm", function(...) "I'm a model", {
-  # Within the confines of these braces, lm is temporarily
-  # a stubbed function. It will be restored when this test is over.
-  expect_identical(lm(Sepal.Width ~ Sepal.Height, iris), "I'm a model")
-  })
