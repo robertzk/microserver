@@ -14,7 +14,7 @@ http_server <- function(routes) {
     query  <- extract_query_from_request(req)
     route  <- determine_route(routes, req$PATH_INFO)
     if (is.microserver_response(route)) return(unclass(route))
-    environment(route) <- environment()
+    environment(route) <- list2env(list(.server_env = environment()), parent = environment(route))
     result <- route(params, query)
     if (is.microserver_response(result)) unclass(result)
     else unclass(microserver_response(result))
