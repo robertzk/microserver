@@ -7,6 +7,7 @@ install:
 - "./travis-tool.sh install_deps"
 - "./travis-tool.sh install_r microbenchmark knitr testthat httpuv json jsonlite"
 - "./travis-tool.sh github_package jimhester/covr"
+- "./travis-tool.sh github_package robertzk/testthatsomemore"
 script: "./travis-tool.sh run_tests"
 after_failure:
 - "./travis-tool.sh dump_logs"
