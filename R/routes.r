@@ -18,13 +18,8 @@ determine_route <- function(routes, request_path) {
   for (route in routenames) {
     if (grepl(paste0('^', route), request_path)) {
       return(routes[[route]])
-    } else if (serve_static) {
-      if (file.exists(paste0("public", request_path))) {
-        payload <- paste0(readLines(paste0("public", request_path)), collapse=" ")
-        return(microserver_response( payload,
-          headers = list("content-type" = "text/html"))
-        )
-      }
+    } else if (serve_static && file.exists(paste0("public", request_path))) {
+      return(fetch_asset(request_path))
     }
   }
 
@@ -33,4 +28,9 @@ determine_route <- function(routes, request_path) {
     if (identical(names(routes), NULL)) routes[[1]]
     else routes[[which('' == names(routes))[1]]]
   } else function(params, query) microserver_response(status = 404)
+}
+
+fetch_asset <- function(asset_path) {
+  payload <- paste0(readLines(paste0("public", request_path)), collapse=" ")
+  microserver_response(payload, headers = list("content-type" = "text/html"))
 }
