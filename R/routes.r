@@ -21,13 +21,9 @@ determine_route <- function(routes, request_path) {
     } else if (serve_static) {
       if (file.exists(paste0("public", request_path))) {
         payload <- paste0(readLines(paste0("public", request_path)), collapse=" ")
-        return(function(p,q) {
-          print(payload)
-          microserver_response(
-            payload,
-            headers = list("content-type" = "text/html")
-          )
-        })
+        return(microserver_response( payload,
+          headers = list("content-type" = "text/html"))
+        )
       }
     }
   }

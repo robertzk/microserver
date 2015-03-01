@@ -13,6 +13,7 @@ http_server <- function(routes) {
     params <- extract_params_from_request(req)
     query  <- extract_query_from_request(req)
     route  <- determine_route(routes, req$PATH_INFO)
+    if (is.microserver_response(route)) return(unclass(route))
     environment(route) <- environment()
     result <- route(params, query)
     if (is.microserver_response(result)) unclass(result)
