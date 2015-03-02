@@ -20,3 +20,7 @@ test_that('it determines the root route for a simple example', {
                                    'Index page')
 })
 
+test_that('it can serve a closure', {
+  expect_identical(determine_route(
+    list('/ping' = function(p,q){(function(){"pong"})()}), '/ping')(), "pong")
+})

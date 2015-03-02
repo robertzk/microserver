@@ -13,8 +13,8 @@ test_that('it returns a 200 response when given a character response', {
 })
 
 test_that('it returns an exotic response correctly', {
-  exotic <- microserver_response('Im a teapot', 418, list('Content-Type' = 'teapot'))
-  exotic2 <- list(body = '"Im a teapot"', status = 418, headers = list('Content-Type' = 'teapot'))
+  exotic <- microserver_response('Im a teapot', 418, list('content-type' = 'teapot'))
+  exotic2 <- list(body = 'Im a teapot', status = 418, headers = list('content-type' = 'teapot'))
   class(exotic2) <- 'microserver_response'
   expect_identical(exotic, exotic2)
 })
@@ -24,4 +24,3 @@ test_that('it returns a 200 response with a correctly encoded JSON response for 
   expect_identical(resp$status, 200)
   expect_equal(from_json(resp$body), c(a = 1, b = 2))
 })
-

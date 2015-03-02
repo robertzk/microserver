@@ -1,5 +1,5 @@
 #' Default http server configuration for libuv hook.
-#' 
+#'
 #' @param routes list. A named list of routes, with a handler
 #'    function for each route. The first unnamed route will be used
 #'    as the root. If none is provided, just a 404 status will be returned.
@@ -13,9 +13,8 @@ http_server <- function(routes) {
     params <- extract_params_from_request(req)
     query  <- extract_query_from_request(req)
     route  <- determine_route(routes, req$PATH_INFO)
-    # Provide access to the server environment.
-    environment(route) <-
-      list2env(list(.server_env = environment()), parent = environment(route))
+    if (is.microserver_response(route)) return(unclass(route))
+    environment(route) <- list2env(list(.server_env = environment()), parent = environment(route))
     result <- route(params, query)
     if (is.microserver_response(result)) unclass(result)
     else unclass(microserver_response(result))
@@ -48,4 +47,3 @@ run_server <- function(routes, port = 8103) {
     Sys.sleep(0.001)
   }
 }
-
