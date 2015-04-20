@@ -1,3 +1,4 @@
+library(testthatsomemore)
 context("determine_route")
 
 test_that("it determines the root 404 route for a trivial example", {
@@ -26,8 +27,12 @@ test_that("it cannot fetch the file for an asset if it doesn't exist", {
 
 test_that("it fetches the file for an asset if it exists", {
   within_file_structure(list(public = list("index.html" = "I am a real file!")), {
-    resp <- in_dir(tempdir, determine_route(list(serve_static = TRUE), "index.html"))()
-    # expect_identical(resp$body, "I am a real file!")
-    pending()
+    resp <- in_dir(tempdir, determine_route(list(serve_static = TRUE), "index.html"))
+    expect_identical(resp$body, "I am a real file!")
   })
+})
+
+test_that('it can serve a closure', {
+  expect_identical(determine_route(
+    list('/ping' = function(p,q){(function(){"pong"})()}), '/ping')(), "pong")
 })
