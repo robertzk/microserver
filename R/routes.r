@@ -10,7 +10,7 @@
 #' @param request_path character. The path to which the request was sent.
 #' @return the correct route drawn from the routes list
 determine_route <- function(routes, request_path) {
-  if(!is.list(routes)) stop("Invalid routes.")
+  if(!is.list(routes)) stop("Invalid routes. Please provide a list.")
   serve_static <- routes$serve_static %||% FALSE
   has_unnamed_route <-
     (identical(names(routes), NULL) && length(routes) != 0) || '' %in% names(routes)
