@@ -1,3 +1,4 @@
+library(testthatsomemore)
 context('utils')
 
 test_that('simplify_homogeneous_lists can simplify homogeneous lists', {

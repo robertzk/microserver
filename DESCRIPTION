@@ -16,6 +16,7 @@ Imports:
     jsonlite
 Suggests:
     testthat,
+    testthatsomemore,
     microbenchmark,
     knitr
 License: MIT

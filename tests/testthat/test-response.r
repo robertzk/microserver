@@ -1,3 +1,4 @@
+library(testthatsomemore)
 context("response")
 
 test_that("it returns an ERROR message on invalid JSON", {
