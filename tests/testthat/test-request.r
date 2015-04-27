@@ -1,3 +1,4 @@
+library(testthatsomemore)
 context('extract_params_from_request')
 
 test_that('it returns NULL for an empty example', {
@@ -39,4 +40,3 @@ test_that('it returns correctly for a 2-argument query', {
 test_that('it can decode URL characters', {
   expect_identical(extract_query_from_request(list(QUERY_STRING = 'a=1%202')), list(a='1 2'))
 })
-

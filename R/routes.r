@@ -10,7 +10,7 @@
 #' @param request_path character. The path to which the request was sent.
 #' @return the correct route drawn from the routes list
 determine_route <- function(routes, request_path) {
-  stopifnot(is.list(routes))
+  if(!is.list(routes)) stop("Invalid routes. Please provide a list.")
   serve_static <- routes$serve_static %||% FALSE
   has_unnamed_route <-
     (identical(names(routes), NULL) && length(routes) != 0) || '' %in% names(routes)
@@ -18,7 +18,7 @@ determine_route <- function(routes, request_path) {
   for (route in routenames) {
     if (grepl(paste0('^', route), request_path)) {
       return(routes[[route]])
-    } else if (serve_static && file.exists(paste0("public", request_path))) {
+    } else if (serve_static && file.exists(file.path("public", request_path))) {
       return(fetch_asset(request_path))
     }
   }
@@ -31,6 +31,6 @@ determine_route <- function(routes, request_path) {
 }
 
 fetch_asset <- function(asset_path) {
-  payload <- paste0(readLines(paste0("public", asset_path)), collapse=" ")
+  payload <- paste0(readLines(file.path("public", asset_path)), collapse=" ")
   microserver_response(payload, headers = list("content-type" = "text/html"))
 }
