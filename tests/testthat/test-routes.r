@@ -27,7 +27,8 @@ test_that("it cannot fetch the file for an asset if it doesn't exist", {
 
 test_that("it fetches the file for an asset if it exists", {
   within_file_structure(list(public = list("index.html" = "I am a real file!")), {
-    resp <- in_dir(tempdir, determine_route(list(serve_static = TRUE), "index.html"))
+    curdir <- getwd(); setwd(tempdir); on.exit(setwd(curdir))
+    resp <- determine_route(list(serve_static = TRUE), "index.html")
     expect_identical(resp$body, "I am a real file!")
   })
 })
