@@ -29,10 +29,30 @@ http_server <- function(routes) {
 #' @param port integer. The default is 8103.
 #' @importFrom httpuv startServer stopServer service
 #' @export
-run_server <- function(routes, port = 8103) {
-  # A list of default HTTUPV callbacks
+run_server <- function(routes, port = 8103, http_basic_auth = NULL) {
+  on_headers <- if (is.null(http_basic_auth)) {
+      ## if http_basic_auth is NULL - no authentication
+      function(req) { NULL }
+    } else {
+      ## else - pass in a list that has password and a list of routes to be protected
+      stopifnot(is.list(http_basic_auth) && all(c('token', 'routes') %in% names(http_basic_auth)))
+      function(req) {
+        ## If it's an unprotected route - just proceed
+        if (all(!req$PATH_INFO %in% http_basic_auth$routes)) return(NULL);
+        ## For protected routes - proceed handling the request if the token is set
+        if (identical(req$HTTP_ACCESSTOKEN, http_basic_auth$token)) return(NULL);
+        # return an 401 error if the conditions are not satisfied
+        list(
+          status = 401L,
+          headers = list(
+            'Content-Type' = 'text/plain'
+          ),
+          body = paste('Access denied.')
+        )
+      }
+    }
   httpuv_callbacks <- list(
-    onHeaders = function(req) { NULL },
+    onHeaders = on_headers,
     call = http_server(routes),
     onWSOpen = function(ws) {
       # print('opening websocket')
