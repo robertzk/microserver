@@ -3,3 +3,13 @@ Microserver [![Build Status](https://img.shields.io/travis/robertzk/microserver.
 
 Minimal R server mimicking Ruby's Sinatra gem.
 
+# Installation
+
+This package is not yet available from CRAN (as of October 5, 2015).
+To install the latest development builds directly from GitHub, run this instead:
+
+```R
+if (!require("devtools")) install.packages("devtools")
+devtools::install_github("robertzk/microserver")
+```
+
