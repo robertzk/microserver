@@ -19,5 +19,5 @@ Suggests:
     testthatsomemore,
     microbenchmark,
     knitr
-License: MIT
+License: MIT + file LICENSE
 LazyData: true
