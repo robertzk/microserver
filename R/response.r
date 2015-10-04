@@ -6,7 +6,6 @@
 #' @param status integer. HTTP status (default is \code{200}).
 #' @param headers list. A list of HTTP headers (default is
 #'    \code{list('Content-Type' = 'text/json')}.
-#' @importFrom jsonlite toJSON
 #' @export
 #' @examples
 #' \dontrun{

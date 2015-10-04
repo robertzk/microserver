@@ -1,7 +1,6 @@
 #' Helper function for extracting a list of POST parameters from a request 
 #' body (in JSON format for now).
 #' 
-#' @importFrom jsonlite fromJSON
 #' @param request environment. The httpuv request environment.
 #' @return a list with the processed POST parameters.
 extract_params_from_request <- function(request) {
