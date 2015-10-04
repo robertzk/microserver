@@ -30,7 +30,6 @@ http_server <- function(routes) {
 #' @param http_basic_auth list. A list of HTTP basic authentication requirements.
 #'     If not \code{NULL} (the default), should contain a \code{token} and
 #'     \code{routes} key.
-#' @importFrom httpuv startServer stopServer service
 #' @export
 run_server <- function(routes, port = 8103, http_basic_auth = NULL) {
   on_headers <- if (is.null(http_basic_auth)) {
