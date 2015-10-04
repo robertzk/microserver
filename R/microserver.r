@@ -27,6 +27,9 @@ http_server <- function(routes) {
 #'
 #' @param routes list. A named list of routes.
 #' @param port integer. The default is 8103.
+#' @param http_basic_auth list. A list of HTTP basic authentication requirements.
+#'     If not \code{NULL} (the default), should contain a \code{token} and
+#'     \code{routes} key.
 #' @importFrom httpuv startServer stopServer service
 #' @export
 run_server <- function(routes, port = 8103, http_basic_auth = NULL) {
