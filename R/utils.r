@@ -36,23 +36,34 @@ to_json <- function(obj) {
 #' \dontrun{
 #'   simplify_homogeneous_lists(jsonlite::fromJSON(
 #'    '{ "numeric": [1,2], "list": [1, "a"] }', simplifyVector = FALSE))
-#'   # A list with atomic numeric vector in the "numeric" key and 
+#'   # A list with atomic numeric vector in the "numeric" key and
 #'   # a list in the "list" key.
 #'   # list(numeric = c(1,2), list = list(1, "a"))
 #' }
 simplify_homogeneous_lists <- function(object) {
   if (is.list(object)) {
-    if (all(vapply(object, terminal, logical(1)))) {
-      type <- common_type(object)
-      if (identical(type, "NULL")) { object }
-      else if (is.na(type)) { object }
-      else { 
-        vapply(object, identity, vector(type, 1))
+    if (is_simple_list(object)) { object }
+    else {
+      if (all(vapply(object, terminal, logical(1)))) {
+        type <- common_type(object)
+        if (identical(type, "NULL")) { object }
+        else if (is.na(type)) { object }
+        else {
+          vapply(object, tricky_identity, vector(type, 1), type)
+        }
+      } else {
+        lapply(object, simplify_homogeneous_lists)
       }
-    } else {
-      lapply(object, simplify_homogeneous_lists)
     }
   } else { object }
+}
+
+is_simple_list <- function(lst) {
+  all(vapply(lst, Negate(is.list), logical(1))) && all(vapply(lst, length, numeric(1)) <= 1)
+}
+
+tricky_identity <- function(obj, type) {
+  if (is.null(obj)) { as(NA, type) } else { as(obj, type) }
 }
 
 terminal <- function(x) {
