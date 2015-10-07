@@ -29,6 +29,7 @@ to_json <- function(obj) {
 #' Fix jsonlite's JSON simplification.
 #'
 #' @param object any R object derived from \code{\link[jsonlite]{fromJSON}}.
+#' @param simple_check logical. This is needed to modify behavior for recursive function call.
 #' @return the same object, with any list components where each element is
 #'   an atomic vector of length 1 or NULL coerced to a single atomic vector.
 #' @note See https://github.com/jeroenooms/jsonlite/issues/66 for more details.

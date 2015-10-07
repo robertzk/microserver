@@ -4,10 +4,12 @@
 \alias{simplify_homogeneous_lists}
 \title{Fix jsonlite's JSON simplification.}
 \usage{
-simplify_homogeneous_lists(object)
+simplify_homogeneous_lists(object, simple_check = TRUE)
 }
 \arguments{
 \item{object}{any R object derived from \code{\link[jsonlite]{fromJSON}}.}
+
+\item{simple_check}{logical. This is needed to modify behavior for recursive function call.}
 }
 \value{
 the same object, with any list components where each element is
