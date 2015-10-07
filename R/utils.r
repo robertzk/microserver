@@ -40,26 +40,32 @@ to_json <- function(obj) {
 #'   # a list in the "list" key.
 #'   # list(numeric = c(1,2), list = list(1, "a"))
 #' }
-simplify_homogeneous_lists <- function(object) {
+simplify_homogeneous_lists <- function(object, simple_check = TRUE) {
+  if (isTRUE(simple_check) && is_simple_list(object)) { return(try_simplify(object)) }
   if (is.list(object)) {
-    if (is_simple_list(object)) { object }
-    else {
-      if (all(vapply(object, terminal, logical(1)))) {
-        type <- common_type(object)
-        if (identical(type, "NULL")) { object }
-        else if (is.na(type)) { object }
-        else {
-          vapply(object, tricky_identity, vector(type, 1), type)
-        }
-      } else {
-        lapply(object, simplify_homogeneous_lists)
+    if (all(vapply(object, terminal, logical(1)))) {
+      type <- common_type(object)
+      if (identical(type, "NULL")) { object }
+      else if (is.na(type)) { object }
+      else {
+        vapply(object, tricky_identity, vector(type, 1), type)
       }
+    } else {
+      lapply(object, simplify_homogeneous_lists, simple_check = FALSE)
     }
   } else { object }
 }
 
+try_simplify <- function(lst) {
+  if (any(vapply(lst, is.null, logical(1)))) { denull(lst) } else { simplify_homogeneous_lists(lst, simple_check = FALSE) }
+}
+
 is_simple_list <- function(lst) {
-  all(vapply(lst, Negate(is.list), logical(1))) && all(vapply(lst, length, numeric(1)) <= 1)
+  is.list(lst) && all(vapply(lst, Negate(is.list), logical(1))) && all(vapply(lst, length, numeric(1)) <= 1)
+}
+
+denull <- function (lst) {
+  Map(function(x) { if (is.null(x)) NA else x }, lst)
 }
 
 tricky_identity <- function(obj, type) {
