@@ -43,7 +43,7 @@ run_server <- function(routes, port = 8103, http_basic_auth = NULL) {
         if (all(!req$PATH_INFO %in% http_basic_auth$routes)) return(NULL);
         ## For protected routes - proceed handling the request if the token is set
         if (identical(req$HTTP_ACCESSTOKEN, http_basic_auth$token)) return(NULL);
-        # return an 401 error if the conditions are not satisfied
+        ## return an 401 error if the conditions are not satisfied
         list(
           status = 401L,
           headers = list(
