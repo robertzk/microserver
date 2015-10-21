@@ -53,3 +53,36 @@ Notice how error message gets returned as a response
 ![GET sum](http://puu.sh/kRwT5/ba673c15cb.png)
 
 I used [httpie](https://github.com/jkbrzt/httpie) to query this server but you can use any other tool that let's you send HTTP requests, like `curl` or [httr](https://github.com/hadley/httr).
+
+
+
+## License
+
+This project is licensed under the MIT License:
+
+Copyright (c) 2015-2016 Robert Krzyzanowski
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+## Authors
+
+This package was originally created by Robert Krzyzanowski. Additional
+maintenance and improvement work was later done by Kirill Sevastyanenko.
