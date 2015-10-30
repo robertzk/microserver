@@ -47,7 +47,8 @@ run_server <- function(routes, port = 8103, http_basic_auth = NULL) {
         list(
           status = 401L,
           headers = list(
-            'Content-Type' = 'text/plain'
+            'Content-Type' = 'text/plain',
+            'Access-Control-Allow-Origin' = '*'
           ),
           body = paste('Access denied.')
         )
