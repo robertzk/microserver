@@ -13,7 +13,7 @@
 #' response(list(a = 1, b = 2))   # { "a": 1, "b": 2 } JSON response
 #' }
 microserver_response <- function(response = NULL, status = 200,
-                     headers = list('content-type' = 'text/json')) {
+                     headers = list('content-type' = 'text/json', 'Access-Control-Allow-Origin' = '*')) {
   response <- tryCatch(
     list(body = ifelse(!is.null(response),
                        ifelse(headers$`content-type` == 'text/json',
@@ -23,7 +23,7 @@ microserver_response <- function(response = NULL, status = 200,
          status = status, headers = headers),
     error = function(err) list(body = to_json(list(status = 'error',
       message = 'Error parsing JSON response')), status = 500,
-      headers = list('content-type' = 'text/json')))
+      headers = list('content-type' = 'text/json', 'Access-Control-Allow-Origin' = '*')))
   class(response) <- 'microserver_response'
   response
 }
