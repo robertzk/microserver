@@ -5,7 +5,8 @@
 \title{Simple S3 class to denote JSON responses for httupv.}
 \usage{
 microserver_response(response = NULL, status = 200,
-  headers = list(`content-type` = "text/json"))
+  headers = list(`content-type` = "text/json", `Access-Control-Allow-Origin` =
+  "*"))
 }
 \arguments{
 \item{response}{ANY. The R object to send as a response parameter.
