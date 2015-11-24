@@ -14,7 +14,7 @@ Parses an HTML page and returns it to the server.
 }
 \examples{
 \dontrun{
-   routes <- list("/index" = html_page("views/index.html")
+   routes <- list("/index" = html_page("views/index.html"))
 }
 }
 

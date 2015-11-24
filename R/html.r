@@ -16,7 +16,7 @@ html <- function(html_string) {
 #' @param file character. The relative path of the file.
 #' @examples
 #' \dontrun{
-#'    routes <- list("/index" = html_page("views/index.html")
+#'    routes <- list("/index" = html_page("views/index.html"))
 #' }
 #' @export
 html_page <- function(file) {
