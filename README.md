@@ -3,17 +3,9 @@ Microserver [![Build Status](https://img.shields.io/travis/robertzk/microserver.
 
 Minimal R server mimicking [Ruby's Sinatra gem](http://www.sinatrarb.com/).
 
-# Installation
-
-This package is not yet available from CRAN (as of October 5, 2015).
-To install the latest development builds directly from GitHub, run this instead:
-
-```r
-if (!require("devtools")) install.packages("devtools")
-devtools::install_github("robertzk/microserver")
-```
-
 # Usage
+
+#### Basic API
 
 ```r
 # First of all you need to define the routes for which your app will be responding.
@@ -53,3 +45,31 @@ Notice how error message gets returned as a response
 ![GET sum](http://puu.sh/kRwT5/ba673c15cb.png)
 
 I used [httpie](https://github.com/jkbrzt/httpie) to query this server but you can use any other tool that let's you send HTTP requests, like `curl` or [httr](https://github.com/hadley/httr).
+
+#### Webpages
+
+Microserver can also be used to serve webpages!
+
+```R
+routes <- list(
+  "/hello" = function(...) html("<b>hello!</b>"),
+  "/about" = html_page("about.html"),
+  html_page("index.html")
+)
+microserver::run_server(routes, port = 8103)
+```
+
+In the example above, the `/hello` route serves generated HTML, the `/about` and default routes serves HTML from a file.
+
+You can then browse http://localhost:8103 in your browser to see the index page, go to http://localhost:8103/about to see the about page, etc.
+
+
+# Installation
+
+This package is not yet available from CRAN (as of October 5, 2015).
+To install the latest development builds directly from GitHub, run this instead:
+
+```r
+if (!require("devtools")) install.packages("devtools")
+devtools::install_github("robertzk/microserver")
+```
