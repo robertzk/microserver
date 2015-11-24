@@ -18,9 +18,7 @@ microserver_response <- function(response = NULL, status = 200,
     list(body    = response_body(response, headers),
          status  = status,
          headers = headers),
-    error = function(err) list(body = to_json(list(status = "error",
-      message = "Error parsing JSON response")), status = 500,
-      headers = list("content-type" = "text/json")))
+    error = function(err) { error_body() })
   class(response) <- "microserver_response"
   response
 }
@@ -32,6 +30,12 @@ microserver_response <- function(response = NULL, status = 200,
 #' @seealso \code{\link{microserver_response}}
 is.microserver_response <- function(obj) { inherits(obj, "microserver_response") }
 
+
+error_body <- function() {
+  list(body = to_json(list(status = "error",
+    message = "Error parsing JSON response")), status = 500,
+    headers = list("content-type" = "text/json"))
+}
 
 response_body <- function(response, headers) {
   if (!is.null(response)) {
