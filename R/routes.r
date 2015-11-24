@@ -29,8 +29,3 @@ determine_route <- function(routes, request_path) {
     else routes[[which('' == names(routes))[1]]]
   } else function(params, query) microserver_response(status = 404)
 }
-
-fetch_asset <- function(asset_path) {
-  payload <- paste0(readLines(file.path("public", asset_path)), collapse=" ")
-  microserver_response(payload, headers = list("content-type" = "text/html"))
-}

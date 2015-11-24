@@ -28,6 +28,14 @@ html_page <- function(file) {
 }
 
 
+#' Legacy fetch_asset code.
+#' @param asset_path character. File path to the asset to be hosted.
+#' @export
+fetch_asset <- function(asset_path) {
+  html_page(file.path("public", asset_path))()
+}
+
+
 #' Decode a URL
 from_url <- function(obj) {
   unlist(lapply(strsplit(utils::URLdecode(gsub("+", " ", obj, fixed = TRUE)), "="),
