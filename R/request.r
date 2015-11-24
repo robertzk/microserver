@@ -6,7 +6,8 @@
 extract_params_from_request <- function(request) {
   post_parameters <- request$rook.input$read_lines()
   if (length(post_parameters) == 0 || nchar(post_parameters) == 0) NULL
-  else tryCatch(from_json(post_parameters), error = function(err) err)
+  else tryCatch(from_json(post_parameters), error = function(err) {
+    tryCatch(from_url(post_parameters), error = function(err) { err }) })
 }
 
 #' Helper function for extracting a list of GET parameters from a request 

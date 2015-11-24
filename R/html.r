@@ -9,3 +9,10 @@
 html <- function(html_string) {
   microserver_response(html_string, headers = list("content-type" = "text/html"))
 }
+
+
+#' Decode a URL
+from_url <- function(obj) {
+  unlist(lapply(strsplit(gsub("+", " ", URLdecode(obj), fixed = TRUE), "="),
+    function(vec) setNames(vec[[2]], vec[[1]])))
+}
