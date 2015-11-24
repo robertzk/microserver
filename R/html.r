@@ -13,6 +13,6 @@ html <- function(html_string) {
 
 #' Decode a URL
 from_url <- function(obj) {
-  unlist(lapply(strsplit(gsub("+", " ", URLdecode(obj), fixed = TRUE), "="),
-    function(vec) setNames(vec[[2]], vec[[1]])))
+  unlist(lapply(strsplit(utils::URLdecode(gsub("+", " ", obj, fixed = TRUE)), "="),
+    function(vec) setNames(paste0(vec[-1], collapse = "="), vec[[1]])))
 }
