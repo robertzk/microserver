@@ -15,12 +15,9 @@
 microserver_response <- function(response = NULL, status = 200,
                      headers = list('content-type' = 'text/json')) {
   response <- tryCatch(
-    list(body = ifelse(!is.null(response),
-                       ifelse(headers$`content-type` == 'text/json',
-                              to_json(response),
-                              response),
-                       ''),
-         status = status, headers = headers),
+    list(body    = response_body(response, headers),
+         status  = status,
+         headers = headers),
     error = function(err) list(body = to_json(list(status = 'error',
       message = 'Error parsing JSON response')), status = 500,
       headers = list('content-type' = 'text/json')))
@@ -34,3 +31,16 @@ microserver_response <- function(response = NULL, status = 200,
 #' @return \code{TRUE} or \code{FALSE} if \code{obj} inherits \code{response}.
 #' @seealso \code{\link{microserver_response}}
 is.microserver_response <- function(obj) { inherits(obj, 'microserver_response') }
+
+
+response_body <- function(response, headers) {
+  if (!is.null(response)) {
+    if (is_json_header(headers)) {
+      to_json(response)
+    } else { response }
+  } else { "" }
+}
+
+is_json_header <- function(headers) {
+  identical(headers$`content-type`, "text/json")
+}
