@@ -14,14 +14,14 @@ If the header is set to text/json it will be converted into a JSON string.}
 \item{status}{integer. HTTP status (default is \code{200}).}
 
 \item{headers}{list. A list of HTTP headers (default is
-\code{list('Content-Type' = 'text/json')}.}
+\code{list("Content-Type" = "text/json")}.}
 }
 \description{
 Simple S3 class to denote JSON responses for httupv.
 }
 \examples{
 \dontrun{
-response('Did not work!', 404) # 404 error
+response("Did not work!", 404) # 404 error
 response(list(a = 1, b = 2))   # { "a": 1, "b": 2 } JSON response
 }
 }
