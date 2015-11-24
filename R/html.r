@@ -11,6 +11,23 @@ html <- function(html_string) {
 }
 
 
+#' Parses an HTML page and returns it to the server.
+#'
+#' @param file character. The relative path of the file.
+#' @examples
+#' \dontrun{
+#'    routes <- list("/index" = html_page("views/index.html")
+#' }
+#' @export
+html_page <- function(file) {
+  force(file)
+  function(...) {
+    file <- tryCatch(readLines(file), error = function(e) { stop("Could not find ", file) })
+    html(paste0(file, collapse = "\n"))
+  }
+}
+
+
 #' Decode a URL
 from_url <- function(obj) {
   unlist(lapply(strsplit(utils::URLdecode(gsub("+", " ", obj, fixed = TRUE)), "="),
