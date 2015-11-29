@@ -19,7 +19,7 @@ the same object, with any list components where each element is
 Fix jsonlite's JSON simplification.
 }
 \note{
-See https://github.com/jeroenooms/jsonlite/issues/66 for more details.
+See \href{https://github.com/jeroenooms/jsonlite/issues/66}{the related GitHub issue} for more details.
 }
 \examples{
 \dontrun{
