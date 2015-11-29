@@ -26,11 +26,7 @@ enlist_if_named <- function(obj) {
 
 recursively_enlist_if_named <- function(obj) {
   if (is.atomic(obj) || length(obj) == 0) enlist_if_named(obj)
-  else {
-    if (is.data.frame(obj)) {
-      as.data.frame(lapply(obj, recursively_enlist_if_named))
-    } else lapply(obj, recursively_enlist_if_named)
-  }
+  else lapply(obj, recursively_enlist_if_named)
 }
 
 #' Fix jsonlite's JSON simplification.
