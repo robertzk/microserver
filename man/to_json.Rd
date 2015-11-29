@@ -6,6 +6,9 @@
 \usage{
 to_json(obj)
 }
+\arguments{
+\item{obj}{an object to convert to JSON.}
+}
 \description{
 Convert an object into JSON.
 }

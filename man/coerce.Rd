@@ -2,11 +2,16 @@
 % Please edit documentation in R/json.r
 \name{coerce}
 \alias{coerce}
-\title{Coerce an object into a particular type.}
+\title{Coerce an object into a particular type, with handling for NULL.}
 \usage{
 coerce(obj, type)
 }
+\arguments{
+\item{obj}{The object to coerce.}
+
+\item{type}{The type to coerce it to.}
+}
 \description{
-Coerce an object into a particular type.
+Coerce an object into a particular type, with handling for NULL.
 }
 

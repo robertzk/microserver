@@ -6,6 +6,9 @@
 \usage{
 is_simple_list(lst)
 }
+\arguments{
+\item{lst}{list. A list to check.}
+}
 \description{
 Check if an object is a simple list (i.e., it is a list, but not a list of lists).
 }

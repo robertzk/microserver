@@ -6,6 +6,9 @@
 \usage{
 from_json(obj)
 }
+\arguments{
+\item{obj}{an object to convert from JSON.}
+}
 \description{
 Convert an object from JSON into an R object.
 }

@@ -34,6 +34,7 @@ fetch_asset <- function(asset_path) {
 
 
 #' Decode a URL
+#' @param obj An object containing URL code to decode.
 from_url <- function(obj) {
   unlist(lapply(strsplit(utils::URLdecode(chartr("+", " ", obj)), "="),
     function(vec) setNames(paste0(vec[-1], collapse = "="), vec[[1]])))

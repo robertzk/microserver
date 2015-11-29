@@ -6,6 +6,9 @@
 \usage{
 from_url(obj)
 }
+\arguments{
+\item{obj}{An object containing URL code to decode.}
+}
 \description{
 Decode a URL
 }

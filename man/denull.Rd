@@ -2,11 +2,14 @@
 % Please edit documentation in R/json.r
 \name{denull}
 \alias{denull}
-\title{Turn NULL into NA.}
+\title{Turn NULL into NA within a list.}
 \usage{
 denull(lst)
 }
+\arguments{
+\item{lst}{list. A list to transform.}
+}
 \description{
-Turn NULL into NA.
+Turn NULL into NA within a list.
 }
 

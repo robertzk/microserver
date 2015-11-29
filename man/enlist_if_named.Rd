@@ -6,6 +6,9 @@
 \usage{
 enlist_if_named(obj)
 }
+\arguments{
+\item{obj}{An object to enlist.}
+}
 \description{
 Convert an object to a list, but only if that object has names.
 }

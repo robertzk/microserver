@@ -6,6 +6,9 @@
 \usage{
 has_names(obj)
 }
+\arguments{
+\item{obj}{an object to check for names.}
+}
 \description{
 Check if an object has names.
 }

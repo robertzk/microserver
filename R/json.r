@@ -1,29 +1,37 @@
 #' Convert an object into JSON.
+#' @param obj an object to convert to JSON.
 to_json <- function(obj) {
   obj2 <- recursively_enlist_if_named(obj)
   as.character(jsonlite::toJSON(obj2, auto_unbox = TRUE))
 }
 
 #' Convert an object from JSON into an R object.
+#' @param obj an object to convert from JSON.
 from_json <- function(obj) {
   simplify_homogeneous_lists(jsonlite::fromJSON(obj, simplifyVector = FALSE))
 }
 
 #' Check if an object has names.
+#' @param obj an object to check for names.
 has_names <- function(obj) {
   !is.null(names(obj)) && !is.null(Find(function(s) !is.na(s) && (s != ""), names(obj)))
 }
 
-#' Coerce an object into a particular type.
+#' Coerce an object into a particular type, with handling for NULL.
+#' @param obj The object to coerce.
+#' @param type The type to coerce it to.
 coerce <- function(obj, type) {
   if (is.null(obj)) { as(NA, type) } else { as(obj, type) }
 }
 
 #' Convert an object to a list, but only if that object has names.
+#' @param obj An object to enlist.
 enlist_if_named <- function(obj) {
   if (is.atomic(obj) && has_names(obj)) as.list(obj) else obj
 }
 
+#' Recursively run the enlist function.
+#' @param obj An object to enlist.
 recursively_enlist_if_named <- function(obj) {
   if (is.atomic(obj) || length(obj) == 0) enlist_if_named(obj)
   else lapply(obj, recursively_enlist_if_named)
@@ -73,16 +81,19 @@ common_type <- function(x) {
 
 #' TRUE or FALSE if the object is a terminal.
 #' A terminal is either a NULL or a length-1 atomic.
+#' @param x an object to check for terminal status.
 terminal <- function(x) {
   is.null(x) || (is.atomic(x) && length(x) == 1)
 }
 
-#' Turn NULL into NA.
+#' Turn NULL into NA within a list.
+#' @param lst list. A list to transform.
 denull <- function (lst) {
   Map(function(x) { if (is.null(x)) NA else x }, lst)
 }
 
 #' Check if an object is a simple list (i.e., it is a list, but not a list of lists).
+#' @param lst list. A list to check.
 is_simple_list <- function(lst) {
   is.list(lst) && all(vapply(lst, Negate(is.list), logical(1))) && all(vapply(lst, length, numeric(1)) <= 1)
 }

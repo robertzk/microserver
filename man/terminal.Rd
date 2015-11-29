@@ -7,6 +7,9 @@ A terminal is either a NULL or a length-1 atomic.}
 \usage{
 terminal(x)
 }
+\arguments{
+\item{x}{an object to check for terminal status.}
+}
 \description{
 TRUE or FALSE if the object is a terminal.
 A terminal is either a NULL or a length-1 atomic.
