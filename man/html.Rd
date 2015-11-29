@@ -13,8 +13,6 @@ html(html_string)
 Returns HTML in a server.
 }
 \examples{
-\dontrun{
-   routes <- list("/index" = function(...) html("<b>bold!</b>"))
-}
+routes <- list("/index" = function(...) html("<b>bold!</b>"))
 }
 
