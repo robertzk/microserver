@@ -28,6 +28,7 @@ html_page <- function(file) {
 #' @param asset_path character. File path to the asset to be hosted.
 #' @export
 fetch_asset <- function(asset_path) {
+  warning("`fetch_asset` is legacy code.  Please use `html_page` instead.")
   html_page(file.path("public", asset_path))()
 }
 
