@@ -24,7 +24,20 @@ test_that("simplify_homogeneous_lists can impute NULLs in nested lists", {
   expect_true(all.equal(goal_obj, list(first, second)))
 })
 
+test_that("simplify_homogeneous_lists returns the object if the object is NULL", {
+  expect_identical(NULL, simplify_homogeneous_lists(NULL))
+})
+
 test_that("to_json correctly handles deeply nested, named, atomic vectors", {
   expect_identical(to_json(list(alice = 5, bob = c(charlie = 27))),
                    "{\"alice\":5,\"bob\":{\"charlie\":27}}")
+})
+
+describe("common_types", {
+  test_that("common_types returns the common type", {
+    expect_equal("numeric", common_type(list(1, 2)))
+  })
+  test_that("common_types returns NA if there are no common types", {
+    expect_equal(NA_character_, common_type(list(1, "a")))
+  })
 })
