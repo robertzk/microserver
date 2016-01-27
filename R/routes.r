@@ -16,6 +16,11 @@ determine_route <- function(routes, request_path) {
     (identical(names(routes), NULL) && length(routes) != 0) || '' %in% names(routes)
   routenames <- names(routes)[names(routes) != '']
   for (route in routenames) {
+    if (identical(route, request_path)) {
+      return(routes[[route]])
+    }
+  }
+  for (route in routenames) {
     if (grepl(paste0('^', route), request_path)) {
       return(routes[[route]])
     } else if (serve_static && file.exists(file.path("public", request_path))) {
