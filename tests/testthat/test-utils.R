@@ -28,3 +28,8 @@ test_that('to_json correctly handles deeply nested, named, atomic vectors', {
   expect_identical(to_json(list(alice = 5, bob = c(charlie = 27))),
                    "{\"alice\":5,\"bob\":{\"charlie\":27}}")
 })
+
+test_that("from_json does not simplify certain lists", {
+  expect_identical(from_json('{"version":"foo"}'), list(version = "foo"))
+})
+
