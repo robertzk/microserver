@@ -1,11 +1,11 @@
 #' Simple S3 class to denote JSON responses for httupv.
 #'
 #' @param response ANY. The R object to send as a response parameter.
-#' If the header is set to text/json it will be converted into a JSON string.
+#' If the header is set to application/json it will be converted into a JSON string.
 #'
 #' @param status integer. HTTP status (default is \code{200}).
 #' @param headers list. A list of HTTP headers (default is
-#'    \code{list('Content-Type' = 'text/json')}.
+#'    \code{list('Content-Type' = 'application/json')}.
 #' @export
 #' @examples
 #' \dontrun{
@@ -13,17 +13,17 @@
 #' response(list(a = 1, b = 2))   # { "a": 1, "b": 2 } JSON response
 #' }
 microserver_response <- function(response = NULL, status = 200,
-                     headers = list('content-type' = 'text/json')) {
+                     headers = list('content-type' = 'application/json')) {
   response <- tryCatch(
     list(body = ifelse(!is.null(response),
-                       ifelse(headers$`content-type` == 'text/json',
+                       ifelse(headers$`content-type` == 'application/json',
                               to_json(response),
                               response),
                        ''),
          status = status, headers = headers),
     error = function(err) list(body = to_json(list(status = 'error',
       message = 'Error parsing JSON response')), status = 500,
-      headers = list('content-type' = 'text/json')))
+      headers = list('content-type' = 'application/json')))
   class(response) <- 'microserver_response'
   response
 }
