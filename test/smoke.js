@@ -24,28 +24,49 @@ microserver.on('error', function (err) {
   console.log('Failed to start child process.');
 });
 
-describe('microserver', function() {
-  before(function(done) {
-    this.timeout(2000); // A very long environment setup.
-    setTimeout(done, 1900);
-  });
-  it('should pong on a /ping', function(done) {
-    chai.request(base_url)
-      .get('/ping')
-      .end(function(err, res) {
-        res.should.have.status(200);
-        res.text.should.equal('"pong"');
-        done();
+setTimeout(
+  function() {
+    describe('microserver', function() {
+      after(function() {
+        microserver.kill()
       });
-  });
-  it('should use a catch all route on other requests', function(done) {
-    chai.request(base_url)
-      .get('/foo')
-      .end(function(err, res) {
-        res.should.have.status(200);
-        res.type.should.equal('text/json');
-        JSON.parse(res.text).exception.should.equal('catch all route');
-        done();
+      it('should pong on a /ping', function(done) {
+        chai.request(base_url)
+          .get('/ping')
+          .end(function(err, res) {
+            should.not.exist(err);
+            res.should.have.status(200);
+            res.text.should.equal('"pong"');
+            done();
+          });
       });
-  });
-});
+      it('should use a catch all route on other requests', function(done) {
+        chai.request(base_url)
+          .get('/foo')
+          .end(function(err, res) {
+            should.not.exist(err);
+            res.should.have.status(200);
+            res.type.should.equal('text/json');
+            JSON.parse(res.text).exception.should.equal('catch all route');
+            done();
+          });
+      });
+      it('can parse query parameters', function(done) {
+        var query = { name: 'foo', limit: 1 }
+        chai.request(base_url)
+          .get('/parse_query')
+          .query(query)
+          .end(function(err, res) {
+            should.not.exist(err);
+            res.should.have.status(200);
+            var response = JSON.parse(decodeURIComponent(res.text));
+            response.query.name.should.equal(query.name);
+            response.query.limit.should.equal(query.limit.toString());
+            done();
+          });
+      });
+    });
+    run();
+  },
+  2000 // allow R server to start
+);

@@ -4,7 +4,7 @@
   "description": "Acceptance tests for github.com/robertzk/microserver",
   "main": "",
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha --delay"
   },
   "repository": {
     "type": "git",
