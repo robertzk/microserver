@@ -11,16 +11,16 @@ chai.use(chaiHttp);
 var base_url = 'http://localhost:' + PORT;
 
 var microserver = spawn('Rscript', [process.cwd() + '/inst/simple_server.R']);
-microserver.on('data', (data) => {
-  console.log(`stdout: ${data}`);
+microserver.on('data', function (data) {
+  console.log('stdout: ' + data);
 });
-microserver.stderr.on('data', (data) => {
-  console.log(`stderr: ${data}`);
+microserver.stderr.on('data', function (data) {
+  console.log('stderr: ' + data);
 });
-microserver.on('close', (code, signal) => {
-  console.log(`R process exited with code ${code} by signal ${signal}`);
+microserver.on('close', function (code, signal) {
+  console.log('R process exited with code ' + code + ' by signal ' + signal);
 });
-microserver.on('error', (err) => {
+microserver.on('error', function (err) {
   console.log('Failed to start child process.');
 });
 
