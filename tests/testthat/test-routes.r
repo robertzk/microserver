@@ -1,5 +1,6 @@
 library(testthatsomemore)
-context("determine_route")
+library(methods)
+context("determine route")
 
 test_that("it determines the root 404 route for a trivial example", {
   expect_identical(determine_route(list(), "")()$status, 404)
