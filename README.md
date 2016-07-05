@@ -17,7 +17,7 @@ devtools::install_github("robertzk/microserver")
 
 Running unit tests is simple: just run `devtools::test()` in your R console.
 
-For acceptance tests, we rely on [mocha]() and [chai](http://chaijs.com/). Both
+For acceptance tests, we rely on [mocha](https://mochajs.org/) and [chai](http://chaijs.com/). Both
 of these tools come from the javascript world. In order to run acceptance tests
 locally make sure you have `node` and `npm` installed. If both of these requirements
 are satisfied then just run
