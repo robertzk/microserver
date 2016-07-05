@@ -16,8 +16,7 @@ Imports:
     jsonlite
 Suggests:
     testthat,
-    testthatsomemore,
-    microbenchmark,
-    knitr
+    covr,
+    testthatsomemore
 License: MIT + file LICENSE
 LazyData: true
