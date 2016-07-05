@@ -1,5 +1,5 @@
 library(testthatsomemore)
-context('extract_params_from_request')
+context('extract params from request')
 
 test_that('it returns NULL for an empty example', {
   request <- list(rook.input = list(read_lines = function() ''))
@@ -18,7 +18,7 @@ test_that('it returns the correct parameter list for a simple correct example', 
                list(example = "JSON", number = 5, numeric = c(1,2), list = list(1, 'a')))
 })
 
-context('extract_query_from_request')
+context('extract query from request')
 
 test_that('it returns NULL for an empty query', {
   expect_identical(extract_query_from_request(list(QUERY_STRING = NULL)), NULL)

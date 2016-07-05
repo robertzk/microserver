@@ -13,11 +13,14 @@ Depends:
     R (>= 3.0.1)
 Imports:
     httpuv,
-    jsonlite
+    jsonlite,
+    methods
 Suggests:
     testthat,
+    covr,
     testthatsomemore,
-    microbenchmark,
-    knitr
+    roxygen2
+Remotes: robertzk/testthatsomemore@0.2.5
 License: MIT + file LICENSE
 LazyData: true
+RoxygenNote: 5.0.1.9000

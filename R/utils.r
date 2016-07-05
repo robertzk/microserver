@@ -83,3 +83,12 @@ common_type <- function(x) {
   else if (length(unique(types)) == 1) { types[1] }
   else { NA }
 }
+
+packagefile <- function(file, ..., read = FALSE) {
+  file <- system.file(file, ..., package = "microserver")
+  if (isTRUE(read)) {
+    paste(collapse = "\n", readLines(file))
+  } else {
+    file
+  }
+}

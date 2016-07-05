@@ -5,4 +5,6 @@
 #' @name microserver
 #' @docType package
 #' @import httpuv jsonlite
+#' @importFrom methods as
+#' @importFrom stats setNames
 NULL

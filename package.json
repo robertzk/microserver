@@ -1,0 +1,24 @@
+{
+  "name": "microserver",
+  "version": "0.1.2",
+  "description": "Acceptance tests for github.com/robertzk/microserver",
+  "main": "",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --delay"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robertzk/microserver.git"
+  },
+  "author": "Kirill Sevastyanenko <kirillseva@gmail.com> (http://github.com/kirillseva)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/robertzk/microserver/issues"
+  },
+  "homepage": "https://github.com/robertzk/microserver#readme",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^2.5.3"
+  }
+}

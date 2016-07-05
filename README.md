@@ -5,13 +5,29 @@ Minimal R server mimicking Ruby's Sinatra gem.
 
 # Installation
 
-This package is not yet available from CRAN (as of October 5, 2015).
+This package is not yet available from CRAN (as of July 5, 2016).
 To install the latest development builds directly from GitHub, run this instead:
 
 ```r
 if (!require("devtools")) install.packages("devtools")
 devtools::install_github("robertzk/microserver")
 ```
+
+# Testing
+
+Running unit tests is simple: just run `devtools::test()` in your R console.
+
+For acceptance tests, we rely on [mocha](https://mochajs.org/) and [chai](http://chaijs.com/). Both
+of these tools come from the javascript world. In order to run acceptance tests
+locally make sure you have `node` and `npm` installed. If both of these requirements
+are satisfied then just run
+
+```sh
+npm install
+npm run test
+```
+
+in the root of this repository.
 
 # Usage
 
