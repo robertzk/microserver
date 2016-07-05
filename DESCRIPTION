@@ -18,5 +18,6 @@ Suggests:
     testthat,
     covr,
     testthatsomemore
+Remotes: robertzk/testthatsomemore@0.2.5
 License: MIT + file LICENSE
 LazyData: true
