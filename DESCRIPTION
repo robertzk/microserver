@@ -17,7 +17,8 @@ Imports:
 Suggests:
     testthat,
     covr,
-    testthatsomemore
+    testthatsomemore,
+    roxygen2
 Remotes: robertzk/testthatsomemore@0.2.5
 License: MIT + file LICENSE
 LazyData: true
