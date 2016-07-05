@@ -25,9 +25,9 @@ microserver.on('error', function (err) {
 });
 
 describe('microserver', function() {
-  beforeEach(function(done) {
-    this.timeout(1500); // A very long environment setup.
-    setTimeout(done, 1000);
+  before(function(done) {
+    this.timeout(2000); // A very long environment setup.
+    setTimeout(done, 1900);
   });
   it('should pong on a /ping', function(done) {
     chai.request(base_url)
