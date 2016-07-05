@@ -1,7 +1,7 @@
 Package: microserver
 Type: Package
 Title: Microserver
-Version: 0.1.1
+Version: 0.1.2
 Description: Microserver is a package that builds on the httupv library
     and aims to provide a minimal set of tools to get a JSON-based
     REST API off the ground.
