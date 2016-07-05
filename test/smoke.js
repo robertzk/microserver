@@ -36,7 +36,7 @@ setTimeout(
           .end(function(err, res) {
             should.not.exist(err);
             res.should.have.status(200);
-            res.text.should.equal('"pong"');
+            res.body.should.equal('pong');
             done();
           });
       });
@@ -46,8 +46,8 @@ setTimeout(
           .end(function(err, res) {
             should.not.exist(err);
             res.should.have.status(200);
-            res.type.should.equal('text/json');
-            JSON.parse(res.text).exception.should.equal('catch all route');
+            res.type.should.equal('application/json');
+            res.body.exception.should.equal('catch all route');
             done();
           });
       });
@@ -59,9 +59,9 @@ setTimeout(
           .end(function(err, res) {
             should.not.exist(err);
             res.should.have.status(200);
-            var response = JSON.parse(decodeURIComponent(res.text));
-            response.query.name.should.equal(query.name);
-            response.query.limit.should.equal(query.limit.toString());
+            res.body.query.name.should.equal(query.name);
+            console.log(res.body);
+            res.body.query.limit.should.equal(query.limit.toString());
             done();
           });
       });
