@@ -1,14 +1,17 @@
 language: c
 before_install:
-- curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-- chmod 755 ./travis-tool.sh
-- "./travis-tool.sh bootstrap"
+  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
+  - chmod 755 ./travis-tool.sh
+  - "./travis-tool.sh bootstrap"
+  - npm install
 install:
-- "./travis-tool.sh install_deps"
-- "./travis-tool.sh install_r microbenchmark knitr testthat httpuv json jsonlite"
-- "./travis-tool.sh github_package jimhester/covr"
-- "./travis-tool.sh github_package robertzk/testthatsomemore"
-script: "./travis-tool.sh run_tests"
+  - "./travis-tool.sh install_deps"
+  - "./travis-tool.sh install_r microbenchmark knitr testthat httpuv json jsonlite"
+  - "./travis-tool.sh github_package jimhester/covr"
+  - "./travis-tool.sh github_package robertzk/testthatsomemore"
+script:
+  - "./travis-tool.sh run_tests"
+  - npm run test
 after_failure:
 - "./travis-tool.sh dump_logs"
 after_success:
