@@ -8,7 +8,7 @@ cache:
 before_install:
   - npm install
 script:
-  - Rscript -e 'ch <- !devtools::check(); ts <- as.data.frame(devtools::test()); q(save="no", status = ch || any(ts$failed | ts$error))'
+  - Rscript -e 'ch <- devtools::check(); ts <- as.data.frame(devtools::test()); q(save="no", status = !as.logical(ch) || any(ts$failed | ts$error))'
   - npm run test
 after_success:
   - "Rscript -e 'library(covr);coveralls()'"
