@@ -1,1 +1,6 @@
 .travis.yml
+^node_modules
+^test
+^package.json$
+^README.md
+^NEWS.md
