@@ -11,7 +11,7 @@
     "url": "git+https://github.com/robertzk/microserver.git"
   },
   "author": "Kirill Sevastyanenko <kirillseva@gmail.com> (http://github.com/kirillseva)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/robertzk/microserver/issues"
   },

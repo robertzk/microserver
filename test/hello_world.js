@@ -7,9 +7,7 @@ var chai     = require('chai')
 chai.use(chaiHttp);
 
 describe('Blobs', function() {
-  it('should list ALL blobs on /blobs GET', done => {
-    var a = 10;
-    a.should.be.a('string');
+  it('should list ALL blobs on /blobs GET', function(done) {
     done();
   });
   it('should list a SINGLE blob on /blob/<id> GET');
