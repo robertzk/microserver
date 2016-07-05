@@ -5,7 +5,7 @@ Minimal R server mimicking Ruby's Sinatra gem.
 
 # Installation
 
-This package is not yet available from CRAN (as of October 5, 2015).
+This package is not yet available from CRAN (as of July 5, 2016).
 To install the latest development builds directly from GitHub, run this instead:
 
 ```r
