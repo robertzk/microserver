@@ -1,3 +1,4 @@
 *.tar.gz
 ..Rcheck
 *.Rcheck
+node_modules
